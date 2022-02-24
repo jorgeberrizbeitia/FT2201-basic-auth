@@ -121,6 +121,11 @@ router.post("/login", async (req, res, next) => {
     req.session.user = foundUser
     // DE AHORA EN ADELANTE NOSOTROS TENEMOS ACCESO AL USUARIO ACTIVO EN REQ.SESSION.USER
   
+    req.app.locals.isLoggedIn = true
+    if (foundUser.role === "admin") {
+      req.app.locals.isAdmin = true
+    }
+
     // 3. redireccionar al usuario a su perfil
     res.redirect("/profile")
 
@@ -134,6 +139,8 @@ router.post("/login", async (req, res, next) => {
 router.get("/logout", (req, res, next) => {
 
   req.session.destroy()
+  req.app.locals.isLoggedIn = false
+  req.app.locals.isAdmin = false
 
   res.redirect("/")
 
