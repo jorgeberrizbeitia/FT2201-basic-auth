@@ -1,4 +1,4 @@
-// otra forma de usar middlewares
+// otra forma de guardar middlewares todos en en un mismo modulo
 
 const isLoggedIn = (req, res, next) => {
   if (req.session.user) {

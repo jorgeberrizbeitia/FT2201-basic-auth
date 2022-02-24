@@ -20,7 +20,13 @@ const userSchema = new Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user"
-    }
+    },
+    profilePic: {
+      type: String
+    },
+    images: [{
+      type: String
+    }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
